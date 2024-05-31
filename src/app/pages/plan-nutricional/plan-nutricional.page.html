@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-button slot="start" fill="clear" size="small">
+      <ion-back-button style="color: white;" text="Volver"></ion-back-button>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="light">
+
+  <ion-card color="light" style="box-shadow: none;">
+    <ion-card-header>
+      <ion-card-title>
+        Plan nutricional
+      </ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card color="light">
+    <ion-card-header>
+      <ion-card-title>Desayuno</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-checkbox labelPlacement="end" class="checkbox-checked">Carbohidratos: 1 porción.</ion-checkbox>
+      <ion-checkbox labelPlacement="end">Proteinas: 2 porciones.</ion-checkbox>
+      <ion-checkbox labelPlacement="end">Lácteos: 1 porción.</ion-checkbox>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

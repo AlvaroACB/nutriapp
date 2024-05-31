@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-button slot="start" fill="clear" size="small">
+      <ion-back-button style="color: white;" text="Volver"></ion-back-button>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="light">
+
+  <ion-card color="light" style="box-shadow: none;">
+    <ion-card-header>
+      <ion-card-title>
+        Resumen clínico
+      </ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card color="light">
+    <ion-card-content>
+
+      <ion-item color="light">
+        <p>Nombre: Nombre usuario</p>
+      </ion-item>
+
+      <ion-item color="light">
+        <p>Diagnóstico: Diagnóstico usuario</p>
+      </ion-item>
+
+      <ion-item color="light">
+        <p>Último control: Fecha</p>
+      </ion-item>
+
+      <ion-item color="light">
+        <p>Fecha: </p>
+        <ion-datetime-button datetime="datetime"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime id="datetime" presentation="date"></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

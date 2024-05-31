@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="light">
+
+  <h1 style="width: 80%; margin: 50px auto 0px auto; text-align: center; font-size: 35px; font-weight: bold;">Nutriapp
+  </h1>
+
+  <ion-item style="margin: 100px auto 0px auto; width: 80%;" color="light">
+    <ion-input label="Usuario" labelPlacement="floating" [counter]="true" maxlength="8"
+      [(ngModel)]="v_usuario"></ion-input>
+  </ion-item>
+
+  <ion-item style="margin: 10px auto 0px auto; width: 80%;" color="light">
+    <ion-input label="Contraseña" labelPlacement="floating" [counter]="true" maxlength="4" type="password"
+      placeholder="" [(ngModel)]="v_password"></ion-input>
+  </ion-item>
+
+  <ion-button (click)="redirigir()" class="texto"
+    style="width: 80%; margin-top: 50px; margin-left: 10%; margin-right: 10%;">
+    Ingresar
+  </ion-button>
+
+</ion-content>
