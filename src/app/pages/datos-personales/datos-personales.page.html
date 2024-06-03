@@ -19,21 +19,48 @@
   <ion-card color="light">
     <ion-card-content>
       <ion-item color="light">
-        <ion-input label="Nombre:" value="Nombre usuario"></ion-input>
+        <ion-input label="Nombre:" placeholder="nombre" [(ngModel)]="nombre"></ion-input>
       </ion-item>
       <ion-item color="light">
-        <ion-input label="Constraseña:" type="password" value=""></ion-input>
+        <ion-input label="Apellido:" placeholder="apellido" [(ngModel)]="apellido"></ion-input>
       </ion-item>
       <ion-item color="light">
-        <ion-input label="Correo:" type="email" value=""></ion-input>
+        <ion-input label="Constraseña:" type="password" placeholder="contraseña" [(ngModel)]="clave"
+          maxlength="4"></ion-input>
       </ion-item>
       <ion-item color="light">
-        <ion-input label="Fecha de nacimiento:" value=""></ion-input>
+        <ion-input label="Correo:" type="email" placeholder="correo" [(ngModel)]="correo"></ion-input>
       </ion-item>
+
       <ion-item color="light">
-        <ion-input label="Sexo:" value=""></ion-input>
+        <p>Fecha nacimiento: </p>
+        <mat-form-field>
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+      </ion-item>
+
+      <ion-item color="light">
+        <ion-select label="Sexo" label-placement="fixed" [(ngModel)]="sexo">
+          <ion-select-option value="hombre">Hombre</ion-select-option>
+          <ion-select-option value="mujer">Mujer</ion-select-option>
+          <ion-select-option value="otro">Otro</ion-select-option>
+        </ion-select>
       </ion-item>
     </ion-card-content>
+
   </ion-card>
+
+
+  <ion-card color="light" style="box-shadow: none; display: flex; justify-content: space-between;">
+    <button mat-flat-button color="primary" style="width: 48%;" id="present-alert">Ver datos</button>
+    <button mat-flat-button color="primary" style="width: 48%;" (click)="limpiar()">Limpiar</button>
+  </ion-card>
+
+  <ion-alert trigger="present-alert" header="Datos usuario" message="{{verDatos()}}"
+    [buttons]="alertButtons"></ion-alert>
 
 </ion-content>

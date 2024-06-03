@@ -7,6 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlanNutricionalPage implements OnInit {
 
+  usuarioPlan = {
+    desCarbos: "1 porción",
+    desProte: "1 porción",
+    desLacteos: "1 porción",
+    almCarbos: "2 porciones",
+    almProte: "2 porciones",
+    almVerduras: "2 porciones",
+    cenCarbos: "1 porción",
+    cenProte: "2 porciones",
+    cenVerduras: "2 porciones",
+  }
+
   constructor() { }
 
   ngOnInit() {

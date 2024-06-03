@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  usuario = "";
+
+  constructor(private router: Router, private activedRouter: ActivatedRoute) {
+    this.activedRouter.queryParams.subscribe(param => {
+      if (this.router.getCurrentNavigation()?.extras.state) {
+        this.usuario = this.router.getCurrentNavigation()?.extras?.state?.['usuarioEnviado'];
+      }
+    })
+  }
 
   ngOnInit() {
   }
 
+  redirigir1() {
+    let navigationExtras: NavigationExtras = {
+      state: {
+        usuarioEnviado: this.usuario
+      }
+    }
+    this.router.navigate(['/resumen'], navigationExtras)
+  }
+  redirigir2() {
+    let navigationExtras: NavigationExtras = {
+      state: {
+        usuarioEnviado: this.usuario
+      }
+    }
+    this.router.navigate(['/mediciones'], navigationExtras)
+  }
+
 }
+

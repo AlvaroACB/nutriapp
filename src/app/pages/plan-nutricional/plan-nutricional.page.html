@@ -21,9 +21,34 @@
       <ion-card-title>Desayuno</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-checkbox labelPlacement="end" class="checkbox-checked">Carbohidratos: 1 porción.</ion-checkbox>
-      <ion-checkbox labelPlacement="end">Proteinas: 2 porciones.</ion-checkbox>
-      <ion-checkbox labelPlacement="end">Lácteos: 1 porción.</ion-checkbox>
+      <ion-checkbox labelPlacement="end" class="checkbox-checked">Carbohidratos: {{ usuarioPlan.desCarbos
+        }}</ion-checkbox>
+      <ion-checkbox labelPlacement="end" class="checkbox-checked">Proteinas: {{ usuarioPlan.desProte }}</ion-checkbox>
+      <ion-checkbox labelPlacement="end" class="checkbox-checked">Lácteos: {{ usuarioPlan.desLacteos }}</ion-checkbox>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="light">
+    <ion-card-header>
+      <ion-card-title>Almuerzo</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-checkbox labelPlacement="end">Carbohidratos: {{ usuarioPlan.almCarbos
+        }}</ion-checkbox>
+      <ion-checkbox labelPlacement="end">Proteinas: {{ usuarioPlan.almProte }}</ion-checkbox>
+      <ion-checkbox labelPlacement="end">Verduras: {{ usuarioPlan.almVerduras }}</ion-checkbox>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="light">
+    <ion-card-header>
+      <ion-card-title>Cena</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-checkbox labelPlacement="end">Carbohidratos: {{ usuarioPlan.cenCarbos }}</ion-checkbox>
+      <ion-checkbox labelPlacement="end">Proteína: {{ usuarioPlan.cenProte
+        }}</ion-checkbox>
+      <ion-checkbox labelPlacement="end">Verduras: {{ usuarioPlan.cenVerduras }}</ion-checkbox>
     </ion-card-content>
   </ion-card>
 

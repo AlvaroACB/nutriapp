@@ -6,10 +6,10 @@
 
 <ion-content [fullscreen]="true" color="light">
 
-  <h1 style="width: 80%; margin: 50px auto 0px auto; font-weight: bold;">Bienvenido usuario</h1>
+  <h1 style="width: 80%; margin: 50px auto 0px auto; font-weight: bold;">Bienvenido {{ usuario }}</h1>
   <div>
 
-    <ion-card style="width: 80%; margin: 20px auto 0px auto;" color="primary" [routerLink]="['/resumen']">
+    <ion-card style="width: 80%; margin: 20px auto 0px auto;" color="primary" (click)="redirigir1()">
       <ion-card-header>
         <div style="display: flex; margin: 10px 0px 10px 0px;">
           <ion-icon name="fitness-outline" size="large" style="margin-right: 10px;"></ion-icon>
@@ -27,7 +27,7 @@
       </ion-card-header>
     </ion-card>
 
-    <ion-card style="width: 80%; margin: 20px auto 0px auto;" color="primary" [routerLink]="['/mediciones']">
+    <ion-card style="width: 80%; margin: 20px auto 0px auto;" color="primary" (click)="redirigir2()">
       <ion-card-header>
         <div style="display: flex; margin: 10px 0px 10px 0px;">
           <ion-icon name="scale-outline" size="large" style="margin-right: 10px;"></ion-icon>

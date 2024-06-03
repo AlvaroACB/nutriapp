@@ -10,18 +10,15 @@
   </h1>
 
   <ion-item style="margin: 100px auto 0px auto; width: 80%;" color="light">
-    <ion-input label="Usuario" labelPlacement="floating" [counter]="true" maxlength="8"
-      [(ngModel)]="v_usuario"></ion-input>
+    <ion-input label="Nombre de usuario" labelPlacement="floating" [counter]="true" maxlength="8"
+      [(ngModel)]="usuario"></ion-input>
   </ion-item>
 
   <ion-item style="margin: 10px auto 0px auto; width: 80%;" color="light">
     <ion-input label="Contraseña" labelPlacement="floating" [counter]="true" maxlength="4" type="password"
-      placeholder="" [(ngModel)]="v_password"></ion-input>
+      placeholder="" [(ngModel)]="password"></ion-input>
   </ion-item>
 
-  <ion-button (click)="redirigir()" class="texto"
-    style="width: 80%; margin-top: 50px; margin-left: 10%; margin-right: 10%;">
-    Ingresar
-  </ion-button>
-
+  <button mat-flat-button color="primary" (click)="redirigir()" class="texto"
+    style="width: 80%; margin-top: 50px; margin-left: 10%; margin-right: 10%; height: 50px; border-radius: 15px;">Ingresar</button>
 </ion-content>

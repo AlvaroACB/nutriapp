@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationExtras, Router, RouterLink } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+import { createAnimation, Animation } from '@ionic/core';
 
 @Component({
   selector: 'app-login',
@@ -8,21 +10,53 @@ import { NavigationExtras, Router, RouterLink } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
-  v_usuario: string = "";
-  v_password: string = "";
+  usuario: string = "";
+  password: string = "";
+  isToastOpen = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private toastController: ToastController) { }
 
   ngOnInit() {
+  }
+
+  setOpen(isOpen: boolean) {
+    this.isToastOpen = isOpen;
+  }
+
+  async mensajeUsuario(position: 'top' | 'middle' | 'bottom') {
+    const toast = await this.toastController.create({
+      message: 'El nombre de usuario debe tener entre 3 y 8 caracteres.',
+      duration: 1500,
+      position: position,
+    });
+    await toast.present();
+  }
+  async mensajePassword(position: 'top' | 'middle' | 'bottom') {
+    const toast = await this.toastController.create({
+      message: 'La contraseña debe tener 4 dígitos.',
+      duration: 1500,
+      position: position,
+    });
+    await toast.present();
   }
 
   redirigir() {
     let navigationExtras: NavigationExtras = {
       state: {
-        v_usuarioEnviado: this.v_usuario
+        usuarioEnviado: this.usuario
       }
     }
-    this.router.navigate(['/home'], navigationExtras)
+    if (this.usuario.length <= 8 && this.usuario.length >= 3) {
+      if (this.password.toString().length == 4) {
+        this.router.navigate(['/home'], navigationExtras)
+      } else {
+        this.mensajePassword('top');
+      }
+    } else {
+      this.mensajeUsuario('top');
+    }
   }
 
+
 }
+
