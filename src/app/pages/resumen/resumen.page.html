@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-button slot="start" fill="clear" size="small">
-      <ion-back-button style="color: white;" text="Volver"></ion-back-button>
+      <ion-back-button style="color: white;" text="Volver">volver</ion-back-button>
     </ion-button>
   </ion-toolbar>
 </ion-header>
@@ -11,35 +11,52 @@
   <ion-card color="light" style="box-shadow: none;">
     <ion-card-header>
       <ion-card-title>
-        Resumen clínico de {{ nombreUsuario }}
+        Resumen clínico
       </ion-card-title>
     </ion-card-header>
   </ion-card>
 
+  <app-camara></app-camara>
+
   <ion-card color="light">
     <ion-card-content>
-
       <ion-item color="light" style="margin-bottom: 10px; ">
         <p>Sexo: {{ usuario.sexo }} </p>
       </ion-item>
-
       <ion-item color="light" style="margin-bottom: 10px; ">
         <p>Grupo etario: {{ usuario.rangoEtario }} </p>
       </ion-item>
-
-
       <ion-item color="light" style="margin-bottom: 10px; text-align: justify;">
         <p>Diagnóstico: {{ usuario.diagnostico }} </p>
       </ion-item>
-
       <ion-item color="light" style="margin-bottom: 10px;">
         <p>Último control: {{ usuario.fechaUltimoControl | date: "dd MMMM yyyy" }}</p>
       </ion-item>
-
       <ion-item color="light" style="margin-bottom: 10px;">
         <p>Próximo control: {{ usuario.fechaProximoControl | date: "dd MMMM yyyy" }}</p>
       </ion-item>
-
     </ion-card-content>
   </ion-card>
+
+  <!-- Tabs -->
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button [routerLink]="['/resumen']">
+        <ion-icon name="fitness-outline"></ion-icon>
+        Resumen
+      </ion-tab-button>
+      <ion-tab-button [routerLink]="['/home/plan-nutricional']">
+        <ion-icon name="fast-food-outline"></ion-icon>
+        Plan
+      </ion-tab-button>
+      <ion-tab-button [routerLink]="['/home/mediciones']">
+        <ion-icon name="scale-outline"></ion-icon>
+        Mediciones
+      </ion-tab-button>
+      <ion-tab-button [routerLink]="['/home/datos-personales']">
+        <ion-icon name="person-outline"></ion-icon>
+        Datos personales
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>

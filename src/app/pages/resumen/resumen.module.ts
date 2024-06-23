@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ResumenPageRoutingModule } from './resumen-routing.module';
 
 import { ResumenPage } from './resumen.page';
+import { CamaraComponent } from 'src/app/components/camara/camara.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { ResumenPage } from './resumen.page';
     IonicModule,
     ResumenPageRoutingModule
   ],
-  declarations: [ResumenPage]
+  declarations: [ResumenPage, CamaraComponent]
 })
-export class ResumenPageModule {}
+export class ResumenPageModule { }

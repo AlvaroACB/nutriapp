@@ -6,7 +6,21 @@ import { HomePage } from './home.page';
 const routes: Routes = [
   {
     path: '',
-    component: HomePage
+    component: HomePage,
+    children: [
+      {
+        path: 'plan-nutricional',
+        loadChildren: () => import('../plan-nutricional/plan-nutricional.module').then(m => m.PlanNutricionalPageModule)
+      },
+      {
+        path: 'mediciones',
+        loadChildren: () => import('../mediciones/mediciones.module').then(m => m.MedicionesPageModule)
+      },
+      {
+        path: 'datos-personales',
+        loadChildren: () => import('../datos-personales/datos-personales.module').then(m => m.DatosPersonalesPageModule)
+      }
+    ]
   }
 ];
 
@@ -14,4 +28,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class HomePageRoutingModule {}
+export class HomePageRoutingModule { }

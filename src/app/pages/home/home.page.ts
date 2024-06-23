@@ -27,16 +27,16 @@ export class HomePage implements OnInit {
         usuarioEnviado: this.usuario
       }
     }
-    this.router.navigate(['/resumen'], navigationExtras)
+    this.router.navigate(['/home/resumen'], navigationExtras)
   }
+
   redirigir2() {
     let navigationExtras: NavigationExtras = {
       state: {
         usuarioEnviado: this.usuario
       }
     }
-    this.router.navigate(['/mediciones'], navigationExtras)
+    this.router.navigate(['/home/mediciones'], navigationExtras)
   }
-
 }
 

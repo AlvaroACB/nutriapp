@@ -1,49 +1,39 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-title>home</ion-title>
+    <ion-button slot="start" fill="clear" size="small">
+      <ion-back-button style="color: white;" text="Volver"></ion-back-button>
+    </ion-button>
+    <p>Sesión de {{usuario}}</p>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" color="light">
 
-  <h1 style="width: 80%; margin: 50px auto 0px auto; font-weight: bold;">Bienvenido {{ usuario }}</h1>
-  <div>
+  <!-- Childrens -->
+  <router-outlet></router-outlet>
 
-    <ion-card style="width: 80%; margin: 20px auto 0px auto;" color="primary" (click)="redirigir1()">
-      <ion-card-header>
-        <div style="display: flex; margin: 10px 0px 10px 0px;">
-          <ion-icon name="fitness-outline" size="large" style="margin-right: 10px;"></ion-icon>
-          <ion-card-title>Resumen clínico</ion-card-title>
-        </div>
-      </ion-card-header>
-    </ion-card>
+  <!-- Tabs -->
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button [routerLink]="['/resumen']">
+        <ion-icon name="fitness-outline"></ion-icon>
+        Resumen
+      </ion-tab-button>
+      <ion-tab-button [routerLink]="['/home/plan-nutricional']">
+        <ion-icon name="fast-food-outline"></ion-icon>
+        Plan
+      </ion-tab-button>
+      <ion-tab-button [routerLink]="['/home/mediciones']">
+        <ion-icon name="scale-outline"></ion-icon>
+        Mediciones
+      </ion-tab-button>
+      <ion-tab-button [routerLink]="['/home/datos-personales']">
+        <ion-icon name="person-outline"></ion-icon>
+        Datos personales
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 
-    <ion-card style="width: 80%; margin: 20px auto 0px auto;" color="primary" [routerLink]="['/plan-nutricional']">
-      <ion-card-header>
-        <div style="display: flex; margin: 10px 0px 10px 0px;">
-          <ion-icon name="fast-food-outline" size="large" style="margin-right: 10px;"></ion-icon>
-          <ion-card-title>Plan nutricional</ion-card-title>
-        </div>
-      </ion-card-header>
-    </ion-card>
+  <!-- CREAR HTML CAMARA, MEJOR DICHO COPIAR -->
 
-    <ion-card style="width: 80%; margin: 20px auto 0px auto;" color="primary" (click)="redirigir2()">
-      <ion-card-header>
-        <div style="display: flex; margin: 10px 0px 10px 0px;">
-          <ion-icon name="scale-outline" size="large" style="margin-right: 10px;"></ion-icon>
-          <ion-card-title>Mediciones</ion-card-title>
-        </div>
-      </ion-card-header>
-    </ion-card>
-
-    <ion-card style="width: 80%; margin: 20px auto 0px auto;" color="primary" [routerLink]="['/datos-personales']">
-      <ion-card-header>
-        <div style="display: flex; margin: 10px 0px 10px 0px;">
-          <ion-icon name="person-outline" size="large" style="margin-right: 10px;"></ion-icon>
-          <ion-card-title>Mis datos</ion-card-title>
-        </div>
-      </ion-card-header>
-    </ion-card>
-
-  </div>
 </ion-content>

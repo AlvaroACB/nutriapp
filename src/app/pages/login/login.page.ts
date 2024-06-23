@@ -48,7 +48,7 @@ export class LoginPage implements OnInit {
     }
     if (this.usuario.length <= 8 && this.usuario.length >= 3) {
       if (this.password.toString().length == 4) {
-        this.router.navigate(['/home'], navigationExtras)
+        this.router.navigate(['/home/resumen'], navigationExtras)
       } else {
         this.mensajePassword('top');
       }
