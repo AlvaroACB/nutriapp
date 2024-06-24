@@ -13,14 +13,14 @@ export class ResumenPage implements OnInit {
   username!: string;
   nombre!: string;
   apellido!: string;
+  sexo!: string;
+  peso!: number;
+  talla!: number;
+  grasa!: number;
+  musculo!: number;
 
 
-  constructor(private servicioBD: DbserviceService, private router: Router, private activedRouter1: ActivatedRoute) {
-    // this.activedRouter1.queryParams.subscribe(param => {
-    //   if (this.router.getCurrentNavigation()?.extras.state) {
-    //     this.nombreUsuario = this.router.getCurrentNavigation()?.extras?.state?.['usuarioEnviado'];
-    //   }
-    // })
+  constructor(private servicioBD: DbserviceService) {
   }
 
   ngOnInit() {
@@ -33,6 +33,17 @@ export class ResumenPage implements OnInit {
               this.username = item[i].username,
                 this.nombre = item[i].nombre,
                 this.apellido = item[i].apellido
+              this.sexo = item[i].sexo
+            }
+          }
+        })
+        this.servicioBD.fetchMediciones().subscribe(item2 => {
+          for (var i = 0; i < item2.length; i++) {
+            if (this.id_current_user == item2[i].id_usuario_fk) {
+              this.peso = item2[i].peso,
+                this.talla = item2[i].talla,
+                this.grasa = item2[i].grasa,
+                this.musculo = item2[i].musculo
             }
           }
         })

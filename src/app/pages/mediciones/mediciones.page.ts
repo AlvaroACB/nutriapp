@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
+import { DbserviceService } from 'src/app/service/dbservice.service';
 
 @Component({
   selector: 'app-mediciones',
@@ -8,24 +9,35 @@ import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 })
 export class MedicionesPage implements OnInit {
 
-  nombreUsuario = "";
-  usuario = {
-    peso: 70,
-    talla: 172,
-    imc: 24,
-    masagrasa: 0.15,
-    masamuscular: 0.40,
-  }
+  id_current_user!: any;
+  peso!: number;
+  talla!: number;
+  grasa!: number;
+  musculo!: number;
+  imc!: number;
+  grasa_porc!: number;
+  musculo_porc!: number;
 
-  constructor(private router: Router, private activedRouter: ActivatedRoute) {
-    this.activedRouter.queryParams.subscribe(param => {
-      if (this.router.getCurrentNavigation()?.extras.state) {
-        this.nombreUsuario = this.router.getCurrentNavigation()?.extras?.state?.['usuarioEnviado'];
-      }
-    })
+  constructor(private servicioBD: DbserviceService,) {
+
   }
 
   ngOnInit() {
+    this.id_current_user = localStorage.getItem("token");
+    this.servicioBD.dbState().subscribe((res) => {
+      if (res) {
+        this.servicioBD.fetchMediciones().subscribe(item => {
+          for (var i = 0; i < item.length; i++) {
+            if (this.id_current_user == item[i].id_usuario_fk) {
+              this.peso = item[i].peso,
+                this.talla = item[i].talla,
+                this.grasa = item[i].grasa,
+                this.musculo = item[i].musculo
+            }
+          }
+        })
+      }
+    });
   }
 
 }

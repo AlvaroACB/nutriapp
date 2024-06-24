@@ -61,7 +61,6 @@ export class LoginPage implements OnInit {
   }
 
   validar() {
-    // this.servicioBD.presentToast(this.usuariosdb[1].username);
     for (var i = 0; i < this.usuariosdb.length; i++) {
       if (this.username == this.usuariosdb[i].username) {
         if (this.password == this.usuariosdb[i].clave) {
