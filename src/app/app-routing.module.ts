@@ -4,22 +4,22 @@ import { authguardGuard } from './guards/authguard.guard';
 
 const routes: Routes = [
   {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
+    path: 'home2',
+    loadChildren: () => import('./pages/home2/home2.module').then(m => m.Home2PageModule)
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'home2',
     pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule),
     canActivate: [authguardGuard],
-  },
-  {
-    path: 'home2',
-    loadChildren: () => import('./pages/home2/home2.module').then(m => m.Home2PageModule)
   },
   {
     path: 'resumen',
@@ -28,6 +28,10 @@ const routes: Routes = [
   {
     path: 'crear-usuario',
     loadChildren: () => import('./pages/crear-usuario/crear-usuario.module').then(m => m.CrearUsuarioPageModule)
+  },
+  {
+    path: 'modificar-usuario',
+    loadChildren: () => import('./pages/modificar-usuario/modificar-usuario.module').then(m => m.ModificarUsuarioPageModule)
   },
   // {
   //   path: 'resumen',

@@ -9,11 +9,73 @@
 
 <ion-content [fullscreen]="true" color="light">
 
+  <h1>
+    Listado de usuarios
+  </h1>
+
+  <ion-searchbar (ionInput)="getItem($event)"></ion-searchbar>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of usuarios">
+      <ion-item color="light">
+        <ion-avatar item-start>
+          <img src="assets/icon/favicon.png">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ item.username }}</h2>
+          <p style="word-wrap: break-word; white-space: normal;">
+            {{ item.nombre }}
+          </p>
+          <p style="word-wrap: break-word; white-space: normal;">
+            {{ item.apellido }}
+          </p>
+          <p style="word-wrap: break-word; white-space: normal;">
+            {{ item.rol }}
+          </p>
+          <p style="word-wrap: break-word; white-space: normal;">
+            {{ item.sexo }}
+          </p>
+          <p style="word-wrap: break-word; white-space: normal;">
+            {{ item.mail }}
+          </p>
+          <p style="word-wrap: break-word; white-space: normal;">
+            {{ item.clave }}
+          </p>
+          <p style="word-wrap: break-word; white-space: normal;">
+            {{ item.fecha_nacimiento }}
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="editar(item)">
+          <ion-icon name="create">
+
+          </ion-icon>
+          Editar
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="eliminar(item)">
+          <ion-icon name="trash">
+
+          </ion-icon>
+          Eliminar
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button [routerLink]="['/crear-usuario']">
       <ion-icon name="add">
       </ion-icon>
     </ion-fab-button>
   </ion-fab>
+
+
+  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/crear-usuario']">
+      <ion-icon name="add">
+      </ion-icon>
+    </ion-fab-button>
+  </ion-fab> -->
 
 </ion-content>

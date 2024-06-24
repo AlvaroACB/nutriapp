@@ -18,49 +18,62 @@
     <ion-card-content>
       <!-- username -->
       <ion-item color="light">
-        <ion-label position="floating">Username</ion-label>
+        <ion-label position="floating" style="margin-top: 0px;">Username</ion-label>
         <ion-input type="text" [(ngModel)]="username">
         </ion-input>
       </ion-item>
       <!-- nombre -->
       <ion-item color="light">
-        <ion-label position="floating">Nombre</ion-label>
+        <ion-label position="floating" style="margin-top: 0px;">Nombre</ion-label>
         <ion-input type="text" [(ngModel)]="nombre">
         </ion-input>
       </ion-item>
       <!-- apellido -->
       <ion-item color="light">
-        <ion-label position="floating">Apellido</ion-label>
+        <ion-label position="floating" style="margin-top: 0px;">Apellido</ion-label>
         <ion-input type="text" [(ngModel)]="apellido">
+        </ion-input>
+      </ion-item>
+      <!-- rol -->
+      <ion-item color="light">
+        <ion-label position="floating" style="margin-top: 0px;">Rol</ion-label>
+        <ion-input type="text" [(ngModel)]="rol">
         </ion-input>
       </ion-item>
       <!-- contraseña -->
       <ion-item color="light">
-        <ion-label position="floating">Contraseña</ion-label>
+        <ion-label position="floating" style="margin-top: 0px;">Contraseña</ion-label>
         <ion-input type="password" [(ngModel)]="clave">
         </ion-input>
       </ion-item>
       <!-- correo -->
       <ion-item color="light">
-        <ion-label position="floating">Correo</ion-label>
-        <ion-input type="mail" [(ngModel)]="correo">
+        <ion-label position="floating" style="margin-top: 0px;">Correo</ion-label>
+        <ion-input type="mail" [(ngModel)]="mail">
         </ion-input>
       </ion-item>
       <!-- sexo -->
       <ion-item color="light">
-        <ion-label position="floating">Sexo</ion-label>
-        <ion-input type="text" [(ngModel)]="sexo">
-        </ion-input>
+        <ion-select label="Sexo" label-placement="fixed" [(ngModel)]="sexo" style="margin-top: 15px;">
+          <ion-select-option value="hombre">Hombre</ion-select-option>
+          <ion-select-option value="mujer">Mujer</ion-select-option>
+          <ion-select-option value="otro">Otro</ion-select-option>
+        </ion-select>
       </ion-item>
+      <!-- <p>{{ sexo }}</p> -->
       <!-- fecha nacimiento -->
       <ion-item color="light">
-        <ion-label position="floating">Fecha nacimiento</ion-label>
-        <ion-input type="date" [(ngModel)]="fecha_nacimiento">
-        </ion-input>
+        <p>Fecha nacimiento: </p>
+        <mat-form-field>
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="fecha_nacimiento">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
       </ion-item>
-
+      <!-- <p>{{ fecha_nacimiento }}</p> -->
     </ion-card-content>
-    <ion-button shape="block">Crear usuario</ion-button>
+    <ion-button shape="block" (click)="crearUsuario()">Crear usuario</ion-button>
   </ion-card>
 
 </ion-content>
