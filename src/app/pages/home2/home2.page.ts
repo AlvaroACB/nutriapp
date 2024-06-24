@@ -10,6 +10,7 @@ import { DbserviceService } from 'src/app/service/dbservice.service';
 
 export class Home2Page implements OnInit {
   usuarios: any = [{
+    id_usuario: 0,
     username: "Juanito123",
     nombre: "Juanito",
     apellido: "Perez",
@@ -18,6 +19,15 @@ export class Home2Page implements OnInit {
     mail: "test@gmail.com",
     clave: "1234",
     fecha_nacimiento: "01-01-2000",
+  }]
+  mediciones: any = [{
+    fk_usuario: 6,
+    peso: 1,
+    talla: 2,
+    grasa: 3,
+    musculo: 4,
+    fecha_medicion: '15-06-2015',
+    fecha_prox_medicion: '15-06-2030',
   }]
 
   constructor(private router: Router, private servicioBD: DbserviceService) { }
@@ -31,6 +41,9 @@ export class Home2Page implements OnInit {
         this.servicioBD.fetchUsuarios().subscribe(item => {
           this.usuarios = item;
         })
+        this.servicioBD.fetchMediciones().subscribe(item2 => {
+          this.mediciones = item2;
+        })
       }
       //this.servicioBD.presentAlert("4"); 
     });
@@ -41,7 +54,16 @@ export class Home2Page implements OnInit {
     console.log('valor del control: ' + valor);
   }
 
-  agregar() {
+  addMedicion(item2: any) {
+    let navigationextras: NavigationExtras = {
+      state: {
+        idEnviado: item2.id_usuario
+      }
+    }
+    this.router.navigate(['/add-medicion'], navigationextras);
+  }
+
+  addPlan(item: any) {
 
   }
 

@@ -3,6 +3,7 @@ import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
 import { Platform, ToastController } from '@ionic/angular';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Usuario } from '../service/usuario';
+import { Medicion } from '../service/medicion';
 
 @Injectable({ providedIn: 'root' })
 
@@ -15,17 +16,37 @@ export class DbserviceService {
 
   registroUsuario: string = "INSERT or IGNORE INTO usuario(id_usuario, username, nombre, apellido, rol, sexo, mail, clave, fecha_nacimiento) VALUES (1, 'AlvaroCB', 'Alvaro', 'Cañete', 'Nutricionista', 'Masculino', 'alvaro@gmail.com', 'alvaro123', '16-09-1995');";
 
-  listaUsuarios = new BehaviorSubject([]); private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  listaUsuarios = new BehaviorSubject([]);
+
+  deleteTableMedicion: string = "DROP TABLE medicion";
+
+  tablaMediciones: string = "CREATE TABLE IF NOT EXISTS medicion(id_medicion INTEGER PRIMARY KEY autoincrement, id_usuario_fk INTEGER NOT NULL, peso INTEGER NOT NULL, talla INTEGER NOT NULL, grasa INTEGER NOT NULL, musculo INTEGER NOT NULL, fecha_medicion VARCHAR(100) NOT NULL, fecha_prox_medicion VARCHAR(100) NOT NULL);";
+
+  registroMedicion: string = "INSERT or IGNORE INTO medicion(id_medicion, id_usuario_fk, peso, talla, grasa, musculo, fecha_medicion, fecha_prox_medicion) VALUES (1, 1, 78, 172, 15, 40, '01-01-2024', '01-01-2025');";
+
+  listaMediciones = new BehaviorSubject([]);
+
+  private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(private sqlite: SQLite, private platform: Platform, public toastController: ToastController) {
     this.crearBD();
   }
+
+  // Funciones CRUD 
 
   async addUsuario(username: string, nombre: string, apellido: string, rol: string, sexo: string, mail: string, clave: string, fecha_nacimiento: string) {
     let data = [username, nombre, apellido, rol, sexo, mail, clave, fecha_nacimiento];
     return this.database?.executeSql('INSERT INTO usuario(username, nombre, apellido, rol, sexo, mail, clave, fecha_nacimiento) VALUES(?,?,?,?,?,?,?,?)', data)
       .then(res => {
         this.buscarUsuarios();
+      })
+  }
+
+  async addMedicion(id_usuario_fk: number, peso: number, talla: number, grasa: number, musculo: number, fecha_medicion: string, fecha_prox_medicion: string) {
+    let data = [id_usuario_fk, peso, talla, grasa, musculo, fecha_medicion, fecha_prox_medicion];
+    return this.database?.executeSql('INSERT INTO medicion(id_usuario_fk, peso, talla, grasa, musculo, fecha_medicion, fecha_prox_medicion) VALUES(?,?,?,?,?,?,?)', data)
+      .then(res => {
+        this.buscarMediciones();
       })
   }
 
@@ -63,11 +84,15 @@ export class DbserviceService {
 
   async crearTablas() {
     try {
-      await this.database.executeSql(this.deleteTableUsuario, [])
+      // await this.database.executeSql(this.deleteTableUsuario, [])
+      // await this.database.executeSql(this.deleteTableMedicion, [])
       await this.database.executeSql(this.tablaUsuarios, []);
+      await this.database.executeSql(this.tablaMediciones, [])
       await this.database.executeSql(this.registroUsuario, []);
+      await this.database.executeSql(this.registroMedicion, [])
       this.presentToast("Tabla Creada");
       this.buscarUsuarios();
+      this.buscarMediciones();
       this.isDbReady.next(true);
     } catch (e) {
       this.presentToast("error creartabla " + e);
@@ -75,14 +100,10 @@ export class DbserviceService {
   }
 
   async buscarUsuarios() {
-    //this.presentAlert("a"); 
     return this.database?.executeSql('SELECT * FROM usuario', []).then(res => {
       let items: Usuario[] = [];
-      //this.presentAlert("b"); 
       if (res.rows.length > 0) {
-        //this.presentAlert("c"); 
         for (var i = 0; i < res.rows.length; i++) {
-          //this.presentAlert("d");
           items.push({
             id_usuario: res.rows.item(i).id_usuario,
             username: res.rows.item(i).username,
@@ -96,13 +117,37 @@ export class DbserviceService {
           });
         }
       }
-      //this.presentAlert("d"); 
       this.listaUsuarios.next(items as any);
+    });
+  }
+
+  async buscarMediciones() {
+    return this.database?.executeSql('SELECT * FROM medicion', []).then(res => {
+      let items2: Medicion[] = [];
+      if (res.rows.length > 0) {
+        for (var i = 0; i < res.rows.length; i++) {
+          items2.push({
+            id_medicion: res.rows.item(i).id_medicion,
+            id_usuario_fk: res.rows.item(i).id_usuario_fk,
+            peso: res.rows.item(i).peso,
+            talla: res.rows.item(i).talla,
+            grasa: res.rows.item(i).grasa,
+            musculo: res.rows.item(i).musculo,
+            fecha_medicion: res.rows.item(i).fecha_medicion,
+            fecha_prox_medicion: res.rows.item(i).fecha_prox_medicion,
+          });
+        }
+      }
+      this.listaMediciones.next(items2 as any);
     });
   }
 
   fetchUsuarios(): Observable<Usuario[]> {
     return this.listaUsuarios.asObservable();
+  }
+
+  fetchMediciones(): Observable<Medicion[]> {
+    return this.listaMediciones.asObservable();
   }
 
   async presentToast(mensaje: string) {

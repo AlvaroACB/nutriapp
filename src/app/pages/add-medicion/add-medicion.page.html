@@ -1,0 +1,67 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>add-medicion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="light">
+
+  <ion-card class="ion-text-center" color="light" style="margin-top: 40px; padding-top: 20px;">
+    <ion-card-title>
+      <ion-label>
+        <h1>Datos medicion usuario</h1>
+      </ion-label>
+    </ion-card-title>
+
+    <h2>{{ fk_usuario }} aqui</h2>
+    <ion-card-content>
+      <!-- Peso -->
+      <ion-item color="light">
+        <ion-label position="floating" style="margin-top: 0px;">Peso</ion-label>
+        <ion-input type="number" [(ngModel)]="peso">
+        </ion-input>
+      </ion-item>
+      <!-- Talla -->
+      <ion-item color="light">
+        <ion-label position="floating" style="margin-top: 0px;">Talla</ion-label>
+        <ion-input type="number" [(ngModel)]="talla">
+        </ion-input>
+      </ion-item>
+      <!-- Grasa -->
+      <ion-item color="light">
+        <ion-label position="floating" style="margin-top: 0px;">Grasa corporal</ion-label>
+        <ion-input type="number" [(ngModel)]="grasa">
+        </ion-input>
+      </ion-item>
+      <!-- Musculo -->
+      <ion-item color="light">
+        <ion-label position="floating" style="margin-top: 0px;">Masa muscular</ion-label>
+        <ion-input type="number" [(ngModel)]="musculo">
+        </ion-input>
+      </ion-item>
+      <!-- fecha medicion -->
+      <ion-item color="light">
+        <p>Fecha medicion </p>
+        <mat-form-field>
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker1" [(ngModel)]="fecha_medicion">
+          <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      </ion-item>
+      <!-- fecha proxima medicion -->
+      <ion-item color="light">
+        <p>Fecha próxima medicion </p>
+        <mat-form-field>
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker2" [(ngModel)]="fecha_prox_medicion">
+          <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </ion-item>
+
+    </ion-card-content>
+    <ion-button shape="block" (click)="crearMedicion()">Añadir medición</ion-button>
+  </ion-card>
+
+</ion-content>

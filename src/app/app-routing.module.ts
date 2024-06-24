@@ -33,6 +33,10 @@ const routes: Routes = [
     path: 'modificar-usuario',
     loadChildren: () => import('./pages/modificar-usuario/modificar-usuario.module').then(m => m.ModificarUsuarioPageModule)
   },
+  {
+    path: 'add-medicion',
+    loadChildren: () => import('./pages/add-medicion/add-medicion.module').then( m => m.AddMedicionPageModule)
+  },
   // {
   //   path: 'resumen',
   //   loadChildren: () => import('./pages/resumen/resumen.module').then( m => m.ResumenPageModule)
