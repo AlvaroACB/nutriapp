@@ -4,17 +4,17 @@ import { authguardGuard } from './guards/authguard.guard';
 
 const routes: Routes = [
   {
-    path: 'home2',
-    loadChildren: () => import('./pages/home2/home2.module').then(m => m.Home2PageModule)
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: '',
-    redirectTo: 'home2',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
+    path: 'home2',
+    loadChildren: () => import('./pages/home2/home2.module').then(m => m.Home2PageModule)
   },
   {
     path: 'home',
@@ -35,7 +35,7 @@ const routes: Routes = [
   },
   {
     path: 'add-medicion',
-    loadChildren: () => import('./pages/add-medicion/add-medicion.module').then( m => m.AddMedicionPageModule)
+    loadChildren: () => import('./pages/add-medicion/add-medicion.module').then(m => m.AddMedicionPageModule)
   },
   // {
   //   path: 'resumen',

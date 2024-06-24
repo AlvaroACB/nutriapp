@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { createAnimation, Animation } from '@ionic/core';
+import { DbserviceService } from 'src/app/service/dbservice.service';
 
 @Component({
   selector: 'app-login',
@@ -10,13 +11,32 @@ import { createAnimation, Animation } from '@ionic/core';
 })
 export class LoginPage implements OnInit {
 
-  usuario: string = "";
+  username: string = "";
   password: string = "";
+  idEnviado!: number;
   isToastOpen = false;
+  usuariosdb: any = [{
+    id_usuario: 0,
+    username: "",
+    nombre: "",
+    apellido: "",
+    rol: "",
+    sexo: "",
+    mail: "",
+    clave: "",
+    fecha_nacimiento: "",
+  }]
 
-  constructor(private router: Router, private toastController: ToastController) { }
+  constructor(private servicioBD: DbserviceService, private router: Router, private toastController: ToastController) { }
 
   ngOnInit() {
+    this.servicioBD.dbState().subscribe((res) => {
+      if (res) {
+        this.servicioBD.fetchUsuarios().subscribe(item => {
+          this.usuariosdb = item;
+        })
+      }
+    });
   }
 
   setOpen(isOpen: boolean) {
@@ -43,10 +63,10 @@ export class LoginPage implements OnInit {
   redirigir() {
     let navigationExtras: NavigationExtras = {
       state: {
-        usuarioEnviado: this.usuario
+        usuarioEnviado: this.username
       }
     }
-    if (this.usuario.length <= 8 && this.usuario.length >= 3) {
+    if (this.username.length <= 8 && this.username.length >= 3) {
       if (this.password.toString().length == 4) {
         this.router.navigate(['/home/resumen'], navigationExtras)
       } else {
@@ -56,6 +76,32 @@ export class LoginPage implements OnInit {
       this.mensajeUsuario('top');
     }
   }
+
+  validar() {
+    // this.servicioBD.presentToast(this.usuariosdb[1].username);
+    for (var i = 0; i < this.usuariosdb.length; i++) {
+      if (this.username == this.usuariosdb[i].username) {
+        if (this.password == this.usuariosdb[i].clave) {
+          let navigationExtras: NavigationExtras = {
+            state: {
+              idEnviado: this.usuariosdb[i].id_usuario
+            }
+          }
+          if (this.usuariosdb[i].rol == 'Nutricionista') {
+            this.router.navigate(['/home2'], navigationExtras)
+          } else if (this.usuariosdb[i].rol == "Paciente") {
+            this.router.navigate(['/resumen'], navigationExtras)
+          } else {
+            this.router.navigate(['/resumen'], navigationExtras)
+          }
+        } else {
+          this.servicioBD.presentToast("Contraseña incorrecta");
+        }
+      }
+    }
+    this.servicioBD.presentToast("Usuario no encontrado");
+  }
+
 
 
 }

@@ -33,11 +33,8 @@ export class Home2Page implements OnInit {
   constructor(private router: Router, private servicioBD: DbserviceService) { }
 
   ngOnInit() {
-    //this.servicioBD.presentAlert("1"); 
     this.servicioBD.dbState().subscribe((res) => {
-      //this.servicioBD.presentAlert("2"); 
       if (res) {
-        //this.servicioBD.presentAlert("3"); 
         this.servicioBD.fetchUsuarios().subscribe(item => {
           this.usuarios = item;
         })
@@ -45,7 +42,6 @@ export class Home2Page implements OnInit {
           this.mediciones = item2;
         })
       }
-      //this.servicioBD.presentAlert("4"); 
     });
   }
 
