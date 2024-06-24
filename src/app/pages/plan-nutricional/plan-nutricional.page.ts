@@ -18,10 +18,12 @@ export class PlanNutricionalPage implements OnInit {
     cenProte: "2 porciones",
     cenVerduras: "2 porciones",
   }
+  username!: any;
 
   constructor() { }
 
   ngOnInit() {
+    this.username = localStorage.getItem("username");
   }
 
 }

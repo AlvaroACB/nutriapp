@@ -19,6 +19,11 @@ export class ResumenPage implements OnInit {
   grasa!: number;
   musculo!: number;
 
+  imcNum!: number;
+  imc!: string;
+  grasa_porc!: string;
+  musculo_porc!: string;
+  estado_nutricional!: string;
 
   constructor(private servicioBD: DbserviceService) {
   }
@@ -49,6 +54,23 @@ export class ResumenPage implements OnInit {
         })
       }
     });
+    this.imc = (this.peso / ((this.talla / 100) * (this.talla / 100))).toFixed(2);
+    this.grasa_porc = ((this.grasa * 100) / this.peso).toFixed();
+    this.musculo_porc = ((this.musculo * 100) / this.peso).toFixed();
+    if (this.imcNum < 19.5) {
+      this.estado_nutricional = "bajo peso"
+    } else if (this.imcNum < 25) {
+      this.estado_nutricional = "normopeso"
+    } else if (this.imcNum < 30) {
+      this.estado_nutricional = "sobrepeso"
+    } else {
+      this.estado_nutricional = "obesidad"
+    }
+    localStorage.setItem("imc", this.imc)
+    localStorage.setItem("grasa_porcentaje", this.grasa_porc)
+    localStorage.setItem("musculo_porcentaje", this.musculo_porc)
+    localStorage.setItem("estado_nutricional", this.estado_nutricional)
+    localStorage.setItem("username", this.username)
   }
 
 }

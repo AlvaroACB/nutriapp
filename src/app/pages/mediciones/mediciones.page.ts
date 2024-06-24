@@ -14,9 +14,11 @@ export class MedicionesPage implements OnInit {
   talla!: number;
   grasa!: number;
   musculo!: number;
-  imc!: number;
-  grasa_porc!: number;
-  musculo_porc!: number;
+  imc!: any;
+  grasa_porc!: any;
+  musculo_porc!: any;
+  estado_nutricional!: any;
+  username!: any;
 
   constructor(private servicioBD: DbserviceService,) {
 
@@ -38,6 +40,11 @@ export class MedicionesPage implements OnInit {
         })
       }
     });
+    this.grasa_porc = localStorage.getItem("grasa_porcentaje");
+    this.musculo_porc = localStorage.getItem("musculo_porcentaje");
+    this.imc = localStorage.getItem("imc");
+    this.estado_nutricional = localStorage.getItem("estado_nutricional");
+    this.username = localStorage.getItem("username");
   }
 
 }

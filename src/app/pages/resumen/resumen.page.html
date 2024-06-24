@@ -21,18 +21,12 @@
   <ion-card color="light">
     <ion-card-content>
       <ion-item color="light" style="margin-bottom: 10px; ">
-        <p>Nombre: {{ nombre }} {{ apellido }} </p>
+        <p>Usuario: {{ nombre }} {{ apellido }} </p>
       </ion-item>
       <ion-item color="light" style="margin-bottom: 10px; ">
-        <p>Sexo: {{ sexo }} </p>
+        <p>Diagnóstico: Paciente sexo {{ sexo }}, estado nutricional {{estado_nutricional}} según imc de
+          {{ imc }}. Presenta un {{ grasa_porc}}% de grasa corporal, y un {{ musculo_porc }}% de masa muscular.</p>
       </ion-item>
-      <ion-item color="light" style="margin-bottom: 10px; ">
-        <p>Peso: {{ peso }} </p>
-      </ion-item>
-      <ion-item color="light" style="margin-bottom: 10px; ">
-        <p>Grasa: {{ grasa }} </p>
-      </ion-item>
-
     </ion-card-content>
   </ion-card>
 

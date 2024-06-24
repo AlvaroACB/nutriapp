@@ -11,7 +11,7 @@
   <ion-card color="light" style="box-shadow: none;">
     <ion-card-header>
       <ion-card-title>
-        Mediciones
+        Mediciones {{ username }}
       </ion-card-title>
     </ion-card-header>
   </ion-card>
@@ -25,13 +25,16 @@
         <p>Talla: {{ talla }}cm</p>
       </ion-item>
       <ion-item color="light">
-        <p>IMC: nu hay </p>
+        <p>IMC: {{imc}} </p>
       </ion-item>
       <ion-item color="light">
-        <p>Masa muscular: {{ musculo | percent:"2.1-2" }}</p>
+        <p>Masa muscular: {{ musculo_porc }}%</p>
       </ion-item>
       <ion-item color="light">
-        <p>Masa grasa: {{ grasa | percent:"2.1-2" }}</p>
+        <p>Masa grasa: {{ grasa_porc }}%</p>
+      </ion-item>
+      <ion-item color="light">
+        <p>Estado nutricional: {{ estado_nutricional }}</p>
       </ion-item>
     </ion-card-content>
   </ion-card>
