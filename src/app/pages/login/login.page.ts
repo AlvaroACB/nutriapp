@@ -60,28 +60,12 @@ export class LoginPage implements OnInit {
     await toast.present();
   }
 
-  redirigir() {
-    let navigationExtras: NavigationExtras = {
-      state: {
-        usuarioEnviado: this.username
-      }
-    }
-    if (this.username.length <= 8 && this.username.length >= 3) {
-      if (this.password.toString().length == 4) {
-        this.router.navigate(['/home/resumen'], navigationExtras)
-      } else {
-        this.mensajePassword('top');
-      }
-    } else {
-      this.mensajeUsuario('top');
-    }
-  }
-
   validar() {
     // this.servicioBD.presentToast(this.usuariosdb[1].username);
     for (var i = 0; i < this.usuariosdb.length; i++) {
       if (this.username == this.usuariosdb[i].username) {
         if (this.password == this.usuariosdb[i].clave) {
+          localStorage.setItem('token', this.usuariosdb[i].id_usuario)
           let navigationExtras: NavigationExtras = {
             state: {
               idEnviado: this.usuariosdb[i].id_usuario

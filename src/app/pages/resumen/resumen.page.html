@@ -11,7 +11,7 @@
   <ion-card color="light" style="box-shadow: none;">
     <ion-card-header>
       <ion-card-title>
-        Resumen clínico
+        Resumen clínico {{ username }}
       </ion-card-title>
     </ion-card-header>
   </ion-card>
@@ -21,9 +21,9 @@
   <ion-card color="light">
     <ion-card-content>
       <ion-item color="light" style="margin-bottom: 10px; ">
-        <p>Sexo: {{ usuario.sexo }} </p>
+        <p>Nombre: {{ nombre }} {{ apellido }} </p>
       </ion-item>
-      <ion-item color="light" style="margin-bottom: 10px; ">
+      <!-- <ion-item color="light" style="margin-bottom: 10px; ">
         <p>Grupo etario: {{ usuario.rangoEtario }} </p>
       </ion-item>
       <ion-item color="light" style="margin-bottom: 10px; text-align: justify;">
@@ -34,7 +34,7 @@
       </ion-item>
       <ion-item color="light" style="margin-bottom: 10px;">
         <p>Próximo control: {{ usuario.fechaProximoControl | date: "dd MMMM yyyy" }}</p>
-      </ion-item>
+      </ion-item> -->
     </ion-card-content>
   </ion-card>
 

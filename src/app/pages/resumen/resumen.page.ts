@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DbserviceService } from 'src/app/service/dbservice.service';
 
 @Component({
   selector: 'app-resumen',
@@ -8,24 +9,35 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ResumenPage implements OnInit {
 
-  nombreUsuario = "";
-  usuario = {
-    sexo: "Masculino",
-    rangoEtario: "Adulto",
-    diagnostico: "Paciente estado nutricional normopeso en base a IMC. Moderado nivel de masa grasa y alto nivel de masa muscular.",
-    fechaUltimoControl: new Date("2024-01-15"),
-    fechaProximoControl: new Date("2025-01-15"),
-  };
+  id_current_user!: any;
+  username!: string;
+  nombre!: string;
+  apellido!: string;
 
-  constructor(private router: Router, private activedRouter1: ActivatedRoute) {
-    this.activedRouter1.queryParams.subscribe(param => {
-      if (this.router.getCurrentNavigation()?.extras.state) {
-        this.nombreUsuario = this.router.getCurrentNavigation()?.extras?.state?.['usuarioEnviado'];
-      }
-    })
+
+  constructor(private servicioBD: DbserviceService, private router: Router, private activedRouter1: ActivatedRoute) {
+    // this.activedRouter1.queryParams.subscribe(param => {
+    //   if (this.router.getCurrentNavigation()?.extras.state) {
+    //     this.nombreUsuario = this.router.getCurrentNavigation()?.extras?.state?.['usuarioEnviado'];
+    //   }
+    // })
   }
 
   ngOnInit() {
+    this.id_current_user = localStorage.getItem("token");
+    this.servicioBD.dbState().subscribe((res) => {
+      if (res) {
+        this.servicioBD.fetchUsuarios().subscribe(item => {
+          for (var i = 0; i < item.length; i++) {
+            if (this.id_current_user == item[i].id_usuario) {
+              this.username = item[i].username,
+                this.nombre = item[i].nombre,
+                this.apellido = item[i].apellido
+            }
+          }
+        })
+      }
+    });
   }
 
 }

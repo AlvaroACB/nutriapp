@@ -121,6 +121,23 @@ export class DbserviceService {
     });
   }
 
+  async buscarUsuario(id: any) {
+    return this.database?.executeSql('SELECT * FROM usuario WHERE id_usuario = ?', [id]).then(res => {
+      let user: Usuario[] = [];
+      user.push({
+        id_usuario: res.id_usuario,
+        username: res.username,
+        nombre: res.nombre,
+        apellido: res.apellido,
+        rol: res.rol,
+        sexo: res.sexo,
+        mail: res.mail,
+        clave: res.clave,
+        fecha_nacimiento: res.fecha_nacimiento,
+      })
+    });
+  }
+
   async buscarMediciones() {
     return this.database?.executeSql('SELECT * FROM medicion', []).then(res => {
       let items2: Medicion[] = [];
