@@ -8,7 +8,7 @@
 
 <ion-content [fullscreen]="true" color="light">
 
-  <ion-card color="light" style="box-shadow: none;">
+  <ion-card color="light" style="box-shadow: none; margin-top: 80px;">
     <ion-card-header>
       <ion-card-title>
         Plan nutricional {{username}}
@@ -50,6 +50,22 @@
         }}</ion-checkbox>
       <ion-checkbox labelPlacement="end">Verduras: {{ usuarioPlan.cenVerduras }}</ion-checkbox>
     </ion-card-content>
+  </ion-card>
+
+  <!-- intentando llamar recetas -->
+  <ion-card color="light" style="margin-top: 50px;">
+    <ion-card-header>
+      <ion-title>Comidas</ion-title>
+    </ion-card-header>
+    <ion-item color="light">
+      <ion-select placeholder="Seleccionar" [compareWith]="compareWith" [(ngModel)]="categoria">
+        <ion-select-option *ngFor="let cat of categorias" [value]="cat">{{ cat.strCategory }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item color="light">
+      {{categoria.strCategoryDescription}}
+    </ion-item>
   </ion-card>
 
 </ion-content>

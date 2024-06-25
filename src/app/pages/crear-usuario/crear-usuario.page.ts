@@ -47,8 +47,8 @@ export class CrearUsuarioPage implements OnInit {
 
   crearUsuario() {
     this.dbservice.addUsuario(this.username, this.nombre, this.apellido, this.rol, this.sexo, this.mail, this.clave, this.fecha_nacimiento);
-    this.dbservice.presentToast("Usuario Agregada");
-    this.router.navigate(['/home2']);
+    this.dbservice.presentToast("Usuario creado");
+    this.router.navigate(['/home2/admin']);
   }
 
 }

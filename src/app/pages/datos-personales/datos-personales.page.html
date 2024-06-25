@@ -8,7 +8,7 @@
 
 <ion-content [fullscreen]="true" color="light">
 
-  <ion-card color="light" style="box-shadow: none;">
+  <ion-card color="light" style="box-shadow: none; margin-top: 80px;">
     <ion-card-header>
       <ion-card-title>
         Datos personales {{username}}
@@ -54,8 +54,9 @@
   </ion-card>
 
 
-  <ion-card color="light" style="box-shadow: none; display: flex; justify-content: space-between;">
-    <!-- <button mat-flat-button color="primary" style="width: 48%;" id="present-alert">Ver datos</button> -->
+  <ion-card color="light" style="box-shadow: none; display: flex;">
+    <ion-button (click)="actualizar()" color="primary" style="width: 80%; margin: 20px auto 0 auto;">Actualizar
+      datos</ion-button>
     <!-- <button mat-flat-button color="primary" style="width: 48%;" (click)="limpiar()">Limpiar</button> -->
   </ion-card>
 

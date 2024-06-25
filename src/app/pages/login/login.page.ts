@@ -71,18 +71,18 @@ export class LoginPage implements OnInit {
             }
           }
           if (this.usuariosdb[i].rol == 'Nutricionista') {
-            this.router.navigate(['/home2'], navigationExtras)
+            this.router.navigate(['/home2/admin'], navigationExtras)
           } else if (this.usuariosdb[i].rol == "Paciente") {
-            this.router.navigate(['/resumen'], navigationExtras)
+            this.router.navigate(['/home/resumen'], navigationExtras)
           } else {
-            this.router.navigate(['/resumen'], navigationExtras)
+            this.router.navigate(['/home/resumen'], navigationExtras)
           }
         } else {
           this.servicioBD.presentToast("Contraseña incorrecta");
         }
       }
     }
-    this.servicioBD.presentToast("Usuario no encontrado");
+    // this.servicioBD.presentToast("Usuario no encontrado");
   }
 
 

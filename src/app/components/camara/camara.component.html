@@ -1,10 +1,8 @@
 <ion-item color="light" style="display: flex; width: 80%; margin: 0 auto 0 auto;">
   <div style="display: flex; flex-direction: column; justify-content: center; margin: 0 auto 0 auto;">
     <img *ngIf="imageSource" src="{{imageSource}}" alt="image"
-      style="width: 60%; max-width: 250px; margin: 0 auto 10px auto;">
-    <!-- <ion-icon name="camera-reverse-outline" click="takePicture()"
-    style="border: 1px solid red; margin: 0 auto 0 auto; width: 50px; height: 50px; position: relative;"></ion-icon> -->
-    <ion-button (click)="takePicture()" style="width: 50%; margin: 0 auto 10px auto; padding: 0px 0px 0px 0px;">Cambiar
+      style="width: 150px; height: 150px; margin: 0 auto 10px auto; border: 4px solid #4E07E3; border-radius: 100px;">
+    <ion-button (click)="takePicture()" style="width: 100%; margin: 0 auto 10px auto; padding: 0px 0px 0px 0px;">Cambiar
       foto</ion-button>
   </div>
 </ion-item>

@@ -16,14 +16,27 @@ export class DatosPersonalesPage implements OnInit {
   username: string = "";
   nombre!: string;
   apellido!: string;
+  rol!: string;
   sexo!: string;
+  correo!: string;
   clave!: string;
-  correo: string = "holis@gmail.com";
+  fecha_nacimiento!: string;
+
+  // id_current_user2: number = 7;
+  // username2: string = "Andre";
+  // nombre2: string = "Andreita";
+  // apellido2: string = "Monsalve";
+  // rol2: string = "Paciente";
+  // sexo2: string = "Femenino";
+  // correo2: string = "andrea@gmail.com";
+  // clave2: string = "1234";
+  // fecha_nacimiento2: string = "01-01-2000";
+
 
   constructor(private servicioBD: DbserviceService) { }
 
   ngOnInit() {
-    this.id_current_user = localStorage.getItem("token");
+    this.id_current_user = Number(localStorage.getItem("token"));
     this.servicioBD.dbState().subscribe((res) => {
       if (res) {
         this.servicioBD.fetchUsuarios().subscribe(item => {
@@ -32,8 +45,11 @@ export class DatosPersonalesPage implements OnInit {
               this.username = item[i].username,
                 this.nombre = item[i].nombre,
                 this.apellido = item[i].apellido,
+                this.rol = item[i].rol,
                 this.sexo = item[i].sexo,
-                this.clave = item[i].clave
+                this.correo = item[i].mail,
+                this.clave = item[i].clave,
+                this.fecha_nacimiento = item[i].fecha_nacimiento
             }
           }
         })
@@ -41,21 +57,10 @@ export class DatosPersonalesPage implements OnInit {
     });
   }
 
-  // verDatos() {
-  //   if (this.nombre != "" && this.correo != "") {
-  //     return "Hola " + this.nombre + " " + this.apellido + ". Tu correo es " + this.correo
-  //   } else if (this.nombre != "") {
-  //     return "Hola " + this.nombre + " " + this.apellido
-  //   } else {
-  //     return "No hay datos ingresados."
-  //   }
-  // }
+  actualizar() {
+    this.servicioBD.updateUsuario(this.id_current_user, this.username, this.nombre, this.apellido, this.rol, this.sexo, this.correo, this.clave, this.fecha_nacimiento)
+    // this.servicioBD.presentToast("datos actualizados");
+  }
 
-  // limpiar() {
-  //   this.nombre = "";
-  //   this.apellido = "";
-  //   this.correo = "";
-  //   this.sexo = ""
-  // }
 
 }

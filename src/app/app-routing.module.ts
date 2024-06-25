@@ -22,37 +22,9 @@ const routes: Routes = [
     canActivate: [authguardGuard],
   },
   {
-    path: 'resumen',
-    loadChildren: () => import('./pages/resumen/resumen.module').then(m => m.ResumenPageModule)
+    path: '**',
+    loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundPageModule)
   },
-  {
-    path: 'crear-usuario',
-    loadChildren: () => import('./pages/crear-usuario/crear-usuario.module').then(m => m.CrearUsuarioPageModule)
-  },
-  {
-    path: 'modificar-usuario',
-    loadChildren: () => import('./pages/modificar-usuario/modificar-usuario.module').then(m => m.ModificarUsuarioPageModule)
-  },
-  {
-    path: 'add-medicion',
-    loadChildren: () => import('./pages/add-medicion/add-medicion.module').then(m => m.AddMedicionPageModule)
-  },
-  // {
-  //   path: 'resumen',
-  //   loadChildren: () => import('./pages/resumen/resumen.module').then( m => m.ResumenPageModule)
-  // },
-  // {
-  //   path: 'plan-nutricional',
-  //   loadChildren: () => import('./pages/plan-nutricional/plan-nutricional.module').then( m => m.PlanNutricionalPageModule)
-  // },
-  // {
-  //   path: 'mediciones',
-  //   loadChildren: () => import('./pages/mediciones/mediciones.module').then( m => m.MedicionesPageModule)
-  // },
-  // {
-  //   path: 'datos-personales',
-  //   loadChildren: () => import('./pages/datos-personales/datos-personales.module').then( m => m.DatosPersonalesPageModule)
-  // }
 ];
 
 @NgModule({

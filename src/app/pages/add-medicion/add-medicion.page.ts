@@ -31,7 +31,7 @@ export class AddMedicionPage implements OnInit {
   crearMedicion() {
     this.dbservice.addMedicion(this.fk_usuario, this.peso, this.talla, this.grasa, this.musculo, this.fecha_medicion, this.fecha_prox_medicion);
     this.dbservice.presentToast("Medicion agregada");
-    this.router.navigate(['/home2']);
+    this.router.navigate(['/home2/admin']);
   }
 
 }

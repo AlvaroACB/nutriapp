@@ -51,9 +51,11 @@ export class DbserviceService {
   }
 
   async updateUsuario(id_usuario: any, username: any, nombre: any, apellido: any, rol: any, sexo: any, mail: any, clave: any, fecha_nacimiento: any) {
+    this.presentToast("ejecutando función");
     let data = [username, nombre, apellido, rol, sexo, mail, clave, fecha_nacimiento, id_usuario];
-    return this.database.executeSql('UPDATE usuario SET username = ?, nombre = ?, apellido = ?, rol = ?, sexo = ?, mail = ?, clave = ?, fecha_nacimiento = ?, WHERE id_usuario = ?', data)
+    return this.database.executeSql('UPDATE usuario SET username = ?, nombre = ?, apellido = ?, rol = ?, sexo = ?, mail = ?, clave = ?, fecha_nacimiento = ? WHERE id_usuario = ?', data)
       .then(data2 => {
+        this.presentToast("usuario actualizado");
         this.buscarUsuarios();
       })
   }

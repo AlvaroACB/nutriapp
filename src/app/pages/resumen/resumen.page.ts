@@ -55,6 +55,7 @@ export class ResumenPage implements OnInit {
       }
     });
     this.imc = (this.peso / ((this.talla / 100) * (this.talla / 100))).toFixed(2);
+    this.imcNum = (this.peso / ((this.talla / 100) * (this.talla / 100)));
     this.grasa_porc = ((this.grasa * 100) / this.peso).toFixed();
     this.musculo_porc = ((this.musculo * 100) / this.peso).toFixed();
     if (this.imcNum < 19.5) {
