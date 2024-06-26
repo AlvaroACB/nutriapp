@@ -38,5 +38,11 @@ export class HomePage implements OnInit {
     }
     this.router.navigate(['/home/mediciones'], navigationExtras)
   }
+
+  salir() {
+    this.router.navigate(['/login'])
+    localStorage.clear();
+  }
+
 }
 

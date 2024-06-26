@@ -60,32 +60,32 @@ export class AdminPage implements OnInit {
   }
 
   addPlan(item: any) {
-    // let navigationextras: NavigationExtras = {
-    //   state: {
-    //     data: ""
-    //   }
-    // }
-    // this.router.navigate(['/home2/add-plan'], navigationextras);
-  }
-
-  editar(item: any) {
-    this.servicioBD.presentToast("Hola");
     let navigationextras: NavigationExtras = {
       state: {
-        idEnviado: item.id_usuario,
-        usernameEnviado: item.username,
-        nombreEnviado: item.nombre,
-        apellidoEnviado: item.apellido,
-        rolEnviado: item.rol,
-        sexoEnviado: item.sexo,
-        mailEnviado: item.mail,
-        claveEnviada: item.clave,
-        fechaEnviada: item.fecha_nacimiento,
+        idEnviado: item.id_usuario
       }
     }
-    this.servicioBD.presentToast("Aqui");
-    this.router.navigate(['/home2/modificar-usuario'], navigationextras);
+    this.router.navigate(['/home2/add-plan'], navigationextras);
   }
+
+  // editar(item: any) {
+  //   this.servicioBD.presentToast("Hola");
+  //   let navigationextras: NavigationExtras = {
+  //     state: {
+  //       idEnviado: item.id_usuario,
+  //       usernameEnviado: item.username,
+  //       nombreEnviado: item.nombre,
+  //       apellidoEnviado: item.apellido,
+  //       rolEnviado: item.rol,
+  //       sexoEnviado: item.sexo,
+  //       mailEnviado: item.mail,
+  //       claveEnviada: item.clave,
+  //       fechaEnviada: item.fecha_nacimiento,
+  //     }
+  //   }
+  //   this.servicioBD.presentToast("Aqui");
+  //   this.router.navigate(['/home2/modificar-usuario'], navigationextras);
+  // }
 
   eliminar(item: any) {
     this.servicioBD.deleteUsuario(item.id_usuario);

@@ -20,7 +20,7 @@ export class MedicionesPage implements OnInit {
   estado_nutricional!: any;
   username!: any;
 
-  constructor(private servicioBD: DbserviceService,) {
+  constructor(private servicioBD: DbserviceService) {
 
   }
 

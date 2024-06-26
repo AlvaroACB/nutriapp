@@ -24,6 +24,10 @@ const routes: Routes = [
         path: 'modificar-usuario',
         loadChildren: () => import('../modificar-usuario/modificar-usuario.module').then(m => m.ModificarUsuarioPageModule)
       },
+      {
+        path: 'add-plan',
+        loadChildren: () => import('../add-plan/add-plan.module').then(m => m.AddPlanPageModule)
+      },
     ]
   }
 ];

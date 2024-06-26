@@ -4,6 +4,7 @@ import { Platform, ToastController } from '@ionic/angular';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Usuario } from '../service/usuario';
 import { Medicion } from '../service/medicion';
+import { Plan } from '../service/plan';
 
 @Injectable({ providedIn: 'root' })
 
@@ -26,6 +27,14 @@ export class DbserviceService {
 
   listaMediciones = new BehaviorSubject([]);
 
+  deleteTablePlan: string = "DROP TABLE plan";
+
+  tablaPlan: string = "CREATE TABLE IF NOT EXISTS plan(id_plan INTEGER PRIMARY KEY autoincrement, id_usuario_fk INTEGER NOT NULL, d_car INTEGER, d_pro INTEGER, d_lac INTEGER, d_fru INTEGER, a_car INTEGER, a_pro INTEGER, a_ver INTEGER, a_fru INTEGER, o_car INTEGER, o_pro INTEGER, o_lac INTEGER, o_fru INTEGER, c_car INTEGER, c_pro INTEGER, c_ver INTEGER, c_fru INTEGER);";
+
+  registroPlan: string = "INSERT or IGNORE INTO plan(id_plan, id_usuario_fk, d_car, d_pro, d_lac, d_fru, a_car, a_pro, a_ver, a_fru, o_car, o_pro, o_lac, o_fru, c_car, c_pro, c_ver, c_fru) VALUES (1, 1, 2, 2, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);";
+
+  listaPlan = new BehaviorSubject([]);
+
   private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(private sqlite: SQLite, private platform: Platform, public toastController: ToastController) {
@@ -47,6 +56,14 @@ export class DbserviceService {
     return this.database?.executeSql('INSERT INTO medicion(id_usuario_fk, peso, talla, grasa, musculo, fecha_medicion, fecha_prox_medicion) VALUES(?,?,?,?,?,?,?)', data)
       .then(res => {
         this.buscarMediciones();
+      })
+  }
+
+  async addPlan(id_usuario_fk: number, d_car: number, d_pro: number, d_lac: number, d_fru: number, a_car: number, a_pro: number, a_ver: number, a_fru: number, o_car: number, o_pro: number, o_lac: number, o_fru: number, c_car: number, c_pro: number, c_ver: number, c_fru: number) {
+    let data = [id_usuario_fk, d_car, d_pro, d_lac, d_fru, a_car, a_pro, a_ver, a_fru, o_car, o_pro, o_lac, o_fru, c_car, c_pro, c_ver, c_fru];
+    return this.database?.executeSql('INSERT INTO plan(id_usuario_fk, d_car, d_pro, d_lac, d_fru, a_car, a_pro, a_ver, a_fru, o_car, o_pro, o_lac, o_fru, c_car, c_pro, c_ver, c_fru) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', data)
+      .then(res => {
+        this.buscarPlan();
       })
   }
 
@@ -89,12 +106,15 @@ export class DbserviceService {
       // await this.database.executeSql(this.deleteTableUsuario, [])
       // await this.database.executeSql(this.deleteTableMedicion, [])
       await this.database.executeSql(this.tablaUsuarios, []);
-      await this.database.executeSql(this.tablaMediciones, [])
+      await this.database.executeSql(this.tablaMediciones, []);
+      await this.database.executeSql(this.tablaPlan, []);
       await this.database.executeSql(this.registroUsuario, []);
-      await this.database.executeSql(this.registroMedicion, [])
+      await this.database.executeSql(this.registroMedicion, []);
+      await this.database.executeSql(this.registroPlan, [])
       this.presentToast("Tabla Creada");
       this.buscarUsuarios();
       this.buscarMediciones();
+      this.buscarPlan();
       this.isDbReady.next(true);
     } catch (e) {
       this.presentToast("error creartabla " + e);
@@ -144,12 +164,47 @@ export class DbserviceService {
     });
   }
 
+  async buscarPlan() {
+    return this.database?.executeSql('SELECT * FROM plan', []).then(res => {
+      let items3: Plan[] = [];
+      if (res.rows.length > 0) {
+        for (var i = 0; i < res.rows.length; i++) {
+          items3.push({
+            id_plan: res.rows.item(i).id_plan,
+            id_usuario_fk: res.rows.item(i).id_usuario_fk,
+            d_car: res.rows.item(i).d_car,
+            d_pro: res.rows.item(i).d_pro,
+            d_lac: res.rows.item(i).d_lac,
+            d_fru: res.rows.item(i).d_fru,
+            a_car: res.rows.item(i).a_car,
+            a_pro: res.rows.item(i).a_pro,
+            a_ver: res.rows.item(i).a_ver,
+            a_fru: res.rows.item(i).a_fru,
+            o_car: res.rows.item(i).o_car,
+            o_pro: res.rows.item(i).o_pro,
+            o_lac: res.rows.item(i).o_lac,
+            o_fru: res.rows.item(i).o_fru,
+            c_car: res.rows.item(i).c_car,
+            c_pro: res.rows.item(i).c_pro,
+            c_ver: res.rows.item(i).c_ver,
+            c_fru: res.rows.item(i).c_fru,
+          });
+        }
+      }
+      this.listaPlan.next(items3 as any);
+    });
+  }
+
   fetchUsuarios(): Observable<Usuario[]> {
     return this.listaUsuarios.asObservable();
   }
 
   fetchMediciones(): Observable<Medicion[]> {
     return this.listaMediciones.asObservable();
+  }
+
+  fetchPlan(): Observable<Plan[]> {
+    return this.listaPlan.asObservable();
   }
 
   async presentToast(mensaje: string) {

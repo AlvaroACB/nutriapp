@@ -1,0 +1,135 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>add-plan</ion-title>
+    <ion-button slot="start" fill="clear" size="small">
+      <ion-back-button style="color: white;" text="Volver"></ion-back-button>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="light">
+  <!-- <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">add-plan</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+
+
+  <ion-card class="ion-text-center" color="light" style="margin-top: 40px; margin-bottom: 50px; padding-top: 20px;">
+    <ion-card-title>
+      <ion-label>
+        <h1>Crear plan</h1>
+      </ion-label>
+    </ion-card-title>
+
+    <ion-card-content>
+      <!-- Peso -->
+      <h2 style="text-align: start; margin-bottom: 0px;">Desayuno</h2>
+      <!-- 1 -->
+      <ion-item color="light">
+        <ion-input label="Carbohidratos:" type="number" placeholder="0" [(ngModel)]="d_car"></ion-input>
+        <ion-button (click)="aum1()" style="width: 40px; height: 30px; font-size: 20px;">+</ion-button>
+        <ion-button (click)="dis1()" style="width: 40px; height: 30px; font-size: 20px;">-</ion-button>
+      </ion-item>
+      <!-- 2 -->
+      <ion-item color="light">
+        <ion-input label="Carbohidratos:" type="number" placeholder="0" [(ngModel)]="d_pro"></ion-input>
+        <ion-button (click)="aum2()" style="width: 40px; height: 30px; font-size: 20px;">+</ion-button>
+        <ion-button (click)="dis2()" style="width: 40px; height: 30px; font-size: 20px;">-</ion-button>
+      </ion-item>
+      <!-- 3 -->
+      <ion-item color="light">
+        <ion-input label="Carbohidratos:" type="number" placeholder="0" [(ngModel)]="d_lac"></ion-input>
+        <ion-button (click)="aum3()" style="width: 40px; height: 30px; font-size: 20px;">+</ion-button>
+        <ion-button (click)="dis3()" style="width: 40px; height: 30px; font-size: 20px;">-</ion-button>
+      </ion-item>
+      <!-- 4 -->
+      <ion-item color="light">
+        <ion-input label="Carbohidratos:" type="number" placeholder="0" [(ngModel)]="d_fru"></ion-input>
+        <ion-button (click)="aum4()" style="width: 40px; height: 30px; font-size: 20px;">+</ion-button>
+        <ion-button (click)="dis4()" style="width: 40px; height: 30px; font-size: 20px;">-</ion-button>
+      </ion-item>
+      <!-- ALMUERZO -->
+      <h2 style="text-align: start; margin-bottom: 0px; margin-top: 15px;">Almuerzo</h2>
+      <!-- 5 -->
+      <ion-item color="light">
+        <ion-input label="Carbohidratos:" type="number" placeholder="0" [(ngModel)]="a_car"></ion-input>
+        <ion-button (click)="aum5()" style="width: 40px; height: 30px; font-size: 20px;">+</ion-button>
+        <ion-button (click)="dis5()" style="width: 40px; height: 30px; font-size: 20px;">-</ion-button>
+      </ion-item>
+      <!-- 6 -->
+      <ion-item color="light">
+        <ion-input label="Carbohidratos:" type="number" placeholder="0" [(ngModel)]="a_pro"></ion-input>
+        <ion-button (click)="aum6()" style="width: 40px; height: 30px; font-size: 20px;">+</ion-button>
+        <ion-button (click)="dis6()" style="width: 40px; height: 30px; font-size: 20px;">-</ion-button>
+      </ion-item>
+      <!-- 7 -->
+      <ion-item color="light">
+        <ion-input label="Carbohidratos:" type="number" placeholder="0" [(ngModel)]="a_ver"></ion-input>
+        <ion-button (click)="aum7()" style="width: 40px; height: 30px; font-size: 20px;">+</ion-button>
+        <ion-button (click)="dis7()" style="width: 40px; height: 30px; font-size: 20px;">-</ion-button>
+      </ion-item>
+      <!-- 8 -->
+      <ion-item color="light">
+        <ion-input label="Carbohidratos:" type="number" placeholder="0" [(ngModel)]="a_fru"></ion-input>
+        <ion-button (click)="aum8()" style="width: 40px; height: 30px; font-size: 20px;">+</ion-button>
+        <ion-button (click)="dis8()" style="width: 40px; height: 30px; font-size: 20px;">-</ion-button>
+      </ion-item>
+      <!-- ONCE -->
+      <h2 style="text-align: start; margin-bottom: 0px; margin-top: 15px;">Once</h2>
+      <!-- 9 -->
+      <ion-item color="light">
+        <ion-input label="Carbohidratos:" type="number" placeholder="0" [(ngModel)]="o_car"></ion-input>
+        <ion-button (click)="aum9()" style="width: 40px; height: 30px; font-size: 20px;">+</ion-button>
+        <ion-button (click)="dis9()" style="width: 40px; height: 30px; font-size: 20px;">-</ion-button>
+      </ion-item>
+      <!-- 10 -->
+      <ion-item color="light">
+        <ion-input label="Carbohidratos:" type="number" placeholder="0" [(ngModel)]="o_pro"></ion-input>
+        <ion-button (click)="aum10()" style="width: 40px; height: 30px; font-size: 20px;">+</ion-button>
+        <ion-button (click)="dis10()" style="width: 40px; height: 30px; font-size: 20px;">-</ion-button>
+      </ion-item>
+      <!-- 11 -->
+      <ion-item color="light">
+        <ion-input label="Carbohidratos:" type="number" placeholder="0" [(ngModel)]="o_lac"></ion-input>
+        <ion-button (click)="aum11()" style="width: 40px; height: 30px; font-size: 20px;">+</ion-button>
+        <ion-button (click)="dis11()" style="width: 40px; height: 30px; font-size: 20px;">-</ion-button>
+      </ion-item>
+      <!-- 12 -->
+      <ion-item color="light">
+        <ion-input label="Carbohidratos:" type="number" placeholder="0" [(ngModel)]="o_fru"></ion-input>
+        <ion-button (click)="aum12()" style="width: 40px; height: 30px; font-size: 20px;">+</ion-button>
+        <ion-button (click)="dis12()" style="width: 40px; height: 30px; font-size: 20px;">-</ion-button>
+      </ion-item>
+      <!-- CENA -->
+      <h2 style="text-align: start; margin-bottom: 0px; margin-top: 15px;">Cena</h2>
+      <!-- 13 -->
+      <ion-item color="light">
+        <ion-input label="Carbohidratos:" type="number" placeholder="0" [(ngModel)]="c_car"></ion-input>
+        <ion-button (click)="aum13()" style="width: 40px; height: 30px; font-size: 20px;">+</ion-button>
+        <ion-button (click)="dis13()" style="width: 40px; height: 30px; font-size: 20px;">-</ion-button>
+      </ion-item>
+      <!-- 14 -->
+      <ion-item color="light">
+        <ion-input label="Carbohidratos:" type="number" placeholder="0" [(ngModel)]="c_pro"></ion-input>
+        <ion-button (click)="aum14()" style="width: 40px; height: 30px; font-size: 20px;">+</ion-button>
+        <ion-button (click)="dis14()" style="width: 40px; height: 30px; font-size: 20px;">-</ion-button>
+      </ion-item>
+      <!-- 15 -->
+      <ion-item color="light">
+        <ion-input label="Carbohidratos:" type="number" placeholder="0" [(ngModel)]="c_ver"></ion-input>
+        <ion-button (click)="aum15()" style="width: 40px; height: 30px; font-size: 20px;">+</ion-button>
+        <ion-button (click)="dis15()" style="width: 40px; height: 30px; font-size: 20px;">-</ion-button>
+      </ion-item>
+      <!-- 16 -->
+      <ion-item color="light">
+        <ion-input label="Carbohidratos:" type="number" placeholder="0" [(ngModel)]="c_fru"></ion-input>
+        <ion-button (click)="aum16()" style="width: 40px; height: 30px; font-size: 20px;">+</ion-button>
+        <ion-button (click)="dis16()" style="width: 40px; height: 30px; font-size: 20px;">-</ion-button>
+      </ion-item>
+    </ion-card-content>
+    <ion-button shape="block" (click)="crearPlan()">Crear plan</ion-button>
+  </ion-card>
+
+
+</ion-content>

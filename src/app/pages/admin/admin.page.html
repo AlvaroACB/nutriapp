@@ -11,91 +11,35 @@
 
   <!-- USUARIOS -->
 
-  <h1>
+  <h1 style="width: 90%; margin: 30px auto 0 auto;">
     Listado de usuarios
   </h1>
 
+  <ion-searchbar (ionInput)="getItem($event)" color="light" style="width: 90%; margin: 0 auto 0 auto;"></ion-searchbar>
 
-  <ion-searchbar (ionInput)="getItem($event)" color="light"></ion-searchbar>
-
-  <ion-list style="background-color: #f6f8fc;">
+  <ion-list style="background-color: #f6f8fc; width: 90%; margin: 0 auto 0 auto;">
     <ion-item-sliding *ngFor="let item of usuarios">
       <ion-item color="light">
-        <ion-avatar item-start>
-          <img src="assets/icon/favicon.png">
-        </ion-avatar>
         <ion-label>
           <h2>{{ item.username }}</h2>
           <p style="word-wrap: break-word; white-space: normal;">
-            {{ item.nombre }} {{ item.apellido }} - {{ item.rol }} {{item.id_usuario}}
+            {{ item.nombre }} {{ item.apellido }} - {{ item.rol }}
           </p>
         </ion-label>
       </ion-item>
       <ion-item-options side="end">
-
-        <ion-item-option color="secondary" (click)="addMedicion(item)">
-          <!-- <ion-icon name="trash">
-          </ion-icon> -->
+        <ion-item-option color="primary" style="width: 100px; text-align: center;" (click)="addMedicion(item)">
           Add<br />medicion
         </ion-item-option>
-
-        <ion-item-option color="primary" (click)="addPlan(item)">
-          <!-- <ion-icon name="create">
-          </ion-icon> -->
+        <ion-item-option color="secondary" style="width: 100px; text-align: center;" (click)="addPlan(item)">
           Add <br />plan
         </ion-item-option>
-
-        <ion-item-option color="warning" (click)="editar(item)">
-          <!-- <ion-icon name="trash">
-          </ion-icon> -->
-          Editar
-        </ion-item-option>
-
-
-        <ion-item-option color="danger" (click)="eliminar(item)">
-          <!-- <ion-icon name="trash">
-          </ion-icon> -->
+        <ion-item-option color="danger" style="width: 100px;" (click)="eliminar(item)">
           Eliminar
         </ion-item-option>
 
 
       </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
-
-  <!-- MEDICIONES -->
-
-  <h1>
-    Listado de mediciones
-  </h1>
-
-  <ion-list style="background-color: #f6f8fc;">
-    <ion-item-sliding *ngFor="let item2 of mediciones">
-      <ion-item color="light">
-        <ion-avatar item-start>
-          <img src="assets/icon/favicon.png">
-        </ion-avatar>
-        <ion-label>
-          <p style="word-wrap: break-word; white-space: normal;">
-            Peso: {{ item2.peso }} | Talla: {{ item2.talla }}
-          </p>
-        </ion-label>
-      </ion-item>
-
-      <!-- <ion-item-options side="end">
-        <ion-item-option (click)="editar(item)">
-          <ion-icon name="create">
-
-          </ion-icon>
-          Editar
-        </ion-item-option>
-        <ion-item-option color="danger" (click)="eliminar(item)">
-          <ion-icon name="trash">
-
-          </ion-icon>
-          Eliminar
-        </ion-item-option>
-      </ion-item-options> -->
     </ion-item-sliding>
   </ion-list>
 

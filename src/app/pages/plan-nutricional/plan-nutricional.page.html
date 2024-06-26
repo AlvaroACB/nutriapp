@@ -16,43 +16,112 @@
     </ion-card-header>
   </ion-card>
 
+  @if( d_car + d_pro + d_lac + d_fru){
   <ion-card color="light">
     <ion-card-header>
       <ion-card-title>Desayuno</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-checkbox labelPlacement="end" class="checkbox-checked">Carbohidratos: {{ usuarioPlan.desCarbos
+      @if(test1){
+      <ion-checkbox labelPlacement="end" class="checkbox-checked">Carbohidratos: {{ d_car }} {{ porcion(d_car) }}
+      </ion-checkbox>
+      }
+      @if(d_pro){
+      <ion-checkbox labelPlacement="end" class="checkbox-checked">Proteinas: {{ d_pro }} {{ porcion(d_pro)
         }}</ion-checkbox>
-      <ion-checkbox labelPlacement="end" class="checkbox-checked">Proteinas: {{ usuarioPlan.desProte }}</ion-checkbox>
-      <ion-checkbox labelPlacement="end" class="checkbox-checked">Lácteos: {{ usuarioPlan.desLacteos }}</ion-checkbox>
+      }
+      @if(d_lac){
+      <ion-checkbox labelPlacement="end" class="checkbox-checked">Lácteos: {{ d_lac }} {{ porcion(d_lac)
+        }}</ion-checkbox>
+      }
+      @if(d_fru){
+      <ion-checkbox labelPlacement="end" class="checkbox-checked">Frutas: {{ d_fru }} {{ porcion(d_fru)
+        }}</ion-checkbox>
+      }
     </ion-card-content>
   </ion-card>
+  }
 
+  @if(a_car + a_pro + a_ver + a_fru){
   <ion-card color="light">
     <ion-card-header>
       <ion-card-title>Almuerzo</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-checkbox labelPlacement="end">Carbohidratos: {{ usuarioPlan.almCarbos
+      @if(a_car){
+      <ion-checkbox labelPlacement="end" class="checkbox-checked">Carbohidratos: {{ a_car }} {{ porcion(a_car)
         }}</ion-checkbox>
-      <ion-checkbox labelPlacement="end">Proteinas: {{ usuarioPlan.almProte }}</ion-checkbox>
-      <ion-checkbox labelPlacement="end">Verduras: {{ usuarioPlan.almVerduras }}</ion-checkbox>
+      }
+      @if(a_pro){
+      <ion-checkbox labelPlacement="end" class="checkbox-checked">Proteinas: {{ a_pro }} {{ porcion(a_pro)
+        }}</ion-checkbox>
+      }
+      @if(a_ver){
+      <ion-checkbox labelPlacement="end" class="checkbox-checked">Verduras: {{ a_ver }} {{ porcion(a_ver)
+        }}</ion-checkbox>
+      }
+      @if(a_fru){
+      <ion-checkbox labelPlacement="end" class="checkbox-checked">Frutas: {{ a_fru }} {{ porcion(a_fru)
+        }}</ion-checkbox>
+      }
     </ion-card-content>
   </ion-card>
+  }
 
+  @if(o_car + o_pro + o_lac + o_fru){
+  <ion-card color="light">
+    <ion-card-header>
+      <ion-card-title>Once</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      @if(o_car){
+      <ion-checkbox labelPlacement="end" class="checkbox-checked">Carbohidratos: {{ o_car }} {{ porcion(o_car)
+        }}</ion-checkbox>
+      }
+      @if(o_pro){
+      <ion-checkbox labelPlacement="end" class="checkbox-checked">Proteinas: {{ o_pro }} {{ porcion(o_pro)
+        }}</ion-checkbox>
+      }
+      @if(o_lac){
+      <ion-checkbox labelPlacement="end" class="checkbox-checked">Lácteos: {{ o_lac }} {{ porcion(o_lac)
+        }}</ion-checkbox>
+      }
+      @if(o_fru){
+      <ion-checkbox labelPlacement="end" class="checkbox-checked">Frutas: {{ o_fru }} {{ porcion(o_fru)
+        }}</ion-checkbox>
+      }
+    </ion-card-content>
+  </ion-card>
+  }
+
+  @if(c_car + c_pro + c_ver + c_fru){
   <ion-card color="light">
     <ion-card-header>
       <ion-card-title>Cena</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-checkbox labelPlacement="end">Carbohidratos: {{ usuarioPlan.cenCarbos }}</ion-checkbox>
-      <ion-checkbox labelPlacement="end">Proteína: {{ usuarioPlan.cenProte
+      @if(c_car){
+      <ion-checkbox labelPlacement="end" class="checkbox-checked">Carbohidratos: {{ c_car }} {{ porcion(c_car)
         }}</ion-checkbox>
-      <ion-checkbox labelPlacement="end">Verduras: {{ usuarioPlan.cenVerduras }}</ion-checkbox>
+      }
+      @if(c_pro){
+      <ion-checkbox labelPlacement="end" class="checkbox-checked">Proteinas: {{ c_pro }} {{ porcion(c_pro)
+        }}</ion-checkbox>
+      }
+      @if(c_ver){
+      <ion-checkbox labelPlacement="end" class="checkbox-checked">Verduras: {{ c_ver }} {{ porcion(c_ver)
+        }}</ion-checkbox>
+      }
+      @if(c_fru){
+      <ion-checkbox labelPlacement="end" class="checkbox-checked">Frutas: {{ c_fru }} {{ porcion(c_fru)
+        }}</ion-checkbox>
+      }
     </ion-card-content>
   </ion-card>
+  }
 
-  <!-- intentando llamar recetas -->
+
+  <!-- Llamar recetas -->
   <ion-card color="light" style="margin-top: 50px;">
     <ion-card-header>
       <ion-title>Comidas</ion-title>

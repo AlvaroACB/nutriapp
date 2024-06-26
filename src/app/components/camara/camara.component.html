@@ -1,7 +1,7 @@
 <ion-item color="light" style="display: flex; width: 80%; margin: 0 auto 0 auto;">
   <div style="display: flex; flex-direction: column; justify-content: center; margin: 0 auto 0 auto;">
     <img *ngIf="imageSource" src="{{imageSource}}" alt="image"
-      style="width: 150px; height: 150px; margin: 0 auto 10px auto; border: 4px solid #4E07E3; border-radius: 100px;">
+      style="width: 150px; height: 150px; margin: 0 auto 10px auto; border: 4px solid #4E07E3; border-radius: 100px; object-fit: cover;">
     <ion-button (click)="takePicture()" style="width: 100%; margin: 0 auto 10px auto; padding: 0px 0px 0px 0px;">Cambiar
       foto</ion-button>
   </div>

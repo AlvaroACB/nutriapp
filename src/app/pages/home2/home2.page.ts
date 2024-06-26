@@ -87,4 +87,9 @@ export class Home2Page implements OnInit {
     this.servicioBD.presentToast("Usuario Eliminado");
   }
 
+  salir() {
+    this.router.navigate(['/login'])
+    localStorage.clear();
+  }
+
 }
