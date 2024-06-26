@@ -11,7 +11,7 @@ import { Plan } from '../service/plan';
 export class DbserviceService {
   public database!: SQLiteObject;
 
-  deleteTableUsuario: string = "DROP TABLE usuario";
+  deleteTableUsuario: string = "DROP TABLE IF EXISTS usuario";
 
   tablaUsuarios: string = "CREATE TABLE IF NOT EXISTS usuario(id_usuario INTEGER PRIMARY KEY autoincrement, username VARCHAR(50) NOT NULL, nombre VARCHAR(50) NOT NULL, apellido VARCHAR(50) NOT NULL, rol VARCHAR(20) NOT NULL, sexo VARCHAR(20) NOT NULL, mail VARCHAR(50) NOT NULL, clave VARCHAR(20) NOT NULL, fecha_nacimiento VARCHAR(100) NOT NULL);";
 
@@ -19,7 +19,7 @@ export class DbserviceService {
 
   listaUsuarios = new BehaviorSubject([]);
 
-  deleteTableMedicion: string = "DROP TABLE medicion";
+  deleteTableMedicion: string = "DROP TABLE IF EXISTS medicion";
 
   tablaMediciones: string = "CREATE TABLE IF NOT EXISTS medicion(id_medicion INTEGER PRIMARY KEY autoincrement, id_usuario_fk INTEGER NOT NULL, peso INTEGER NOT NULL, talla INTEGER NOT NULL, grasa INTEGER NOT NULL, musculo INTEGER NOT NULL, fecha_medicion VARCHAR(100) NOT NULL, fecha_prox_medicion VARCHAR(100) NOT NULL);";
 
@@ -27,7 +27,7 @@ export class DbserviceService {
 
   listaMediciones = new BehaviorSubject([]);
 
-  deleteTablePlan: string = "DROP TABLE plan";
+  deleteTablePlan: string = "DROP TABLE IF EXISTS plan";
 
   tablaPlan: string = "CREATE TABLE IF NOT EXISTS plan(id_plan INTEGER PRIMARY KEY autoincrement, id_usuario_fk INTEGER NOT NULL, d_car INTEGER, d_pro INTEGER, d_lac INTEGER, d_fru INTEGER, a_car INTEGER, a_pro INTEGER, a_ver INTEGER, a_fru INTEGER, o_car INTEGER, o_pro INTEGER, o_lac INTEGER, o_fru INTEGER, c_car INTEGER, c_pro INTEGER, c_ver INTEGER, c_fru INTEGER);";
 
@@ -103,8 +103,9 @@ export class DbserviceService {
 
   async crearTablas() {
     try {
-      // await this.database.executeSql(this.deleteTableUsuario, [])
-      // await this.database.executeSql(this.deleteTableMedicion, [])
+      await this.database.executeSql(this.deleteTableUsuario, [])
+      await this.database.executeSql(this.deleteTableMedicion, [])
+      await this.database.executeSql(this.deleteTablePlan, [])
       await this.database.executeSql(this.tablaUsuarios, []);
       await this.database.executeSql(this.tablaMediciones, []);
       await this.database.executeSql(this.tablaPlan, []);
