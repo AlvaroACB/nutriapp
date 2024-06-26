@@ -65,6 +65,7 @@ export class LoginPage implements OnInit {
       if (this.username == this.usuariosdb[i].username) {
         if (this.password == this.usuariosdb[i].clave) {
           localStorage.setItem('token', this.usuariosdb[i].id_usuario)
+          localStorage.setItem('rolusu', this.usuariosdb[i].rol)
           let navigationExtras: NavigationExtras = {
             state: {
               idEnviado: this.usuariosdb[i].id_usuario

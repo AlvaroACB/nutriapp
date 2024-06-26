@@ -15,7 +15,7 @@ export class DbserviceService {
 
   tablaUsuarios: string = "CREATE TABLE IF NOT EXISTS usuario(id_usuario INTEGER PRIMARY KEY autoincrement, username VARCHAR(50) NOT NULL, nombre VARCHAR(50) NOT NULL, apellido VARCHAR(50) NOT NULL, rol VARCHAR(20) NOT NULL, sexo VARCHAR(20) NOT NULL, mail VARCHAR(50) NOT NULL, clave VARCHAR(20) NOT NULL, fecha_nacimiento VARCHAR(100) NOT NULL);";
 
-  registroUsuario: string = "INSERT or IGNORE INTO usuario(id_usuario, username, nombre, apellido, rol, sexo, mail, clave, fecha_nacimiento) VALUES (1, 'AlvaroCB', 'Alvaro', 'Cañete', 'Nutricionista', 'Masculino', 'alvaro@gmail.com', 'alvaro123', '16-09-1995');";
+  registroUsuario: string = "INSERT or IGNORE INTO usuario(id_usuario, username, nombre, apellido, rol, sexo, mail, clave, fecha_nacimiento) VALUES (1, 'AlvaroCB', 'Alvaro', 'Cañete', 'Nutricionista', 'Masculino', 'alvaro@gmail.com', '1234', '16-09-1995');";
 
   listaUsuarios = new BehaviorSubject([]);
 
@@ -214,5 +214,23 @@ export class DbserviceService {
       duration: 3000
     });
     toast.present();
+  }
+
+  guardNutricionista() {
+    let rol = localStorage.getItem('rolusu');
+    if (rol == 'Nutricionista') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  guardPaciente() {
+    let rol = localStorage.getItem('rolusu');
+    if (rol == 'Paciente') {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

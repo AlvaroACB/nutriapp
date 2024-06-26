@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { authguardGuard } from './guards/authguard.guard';
+import { nutricionistaGuard } from './guards/nutricionista.guard';
+import { pacienteGuard } from './guards/paciente.guard';
 
 const routes: Routes = [
   {
@@ -14,12 +16,13 @@ const routes: Routes = [
   },
   {
     path: 'home2',
-    loadChildren: () => import('./pages/home2/home2.module').then(m => m.Home2PageModule)
+    loadChildren: () => import('./pages/home2/home2.module').then(m => m.Home2PageModule),
+    canActivate: [nutricionistaGuard]
   },
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule),
-    canActivate: [authguardGuard],
+    canActivate: [pacienteGuard],
   },
   {
     path: '**',
